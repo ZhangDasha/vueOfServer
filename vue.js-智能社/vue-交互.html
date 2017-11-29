@@ -2,29 +2,32 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
-	<script src="jquery-3.1.1.min.js"></script>
-	<script src="bootstrap.js"></script>
+	<title>vue-交互</title>
 	<script src="vue.js"></script>
 	<script src="vue-resource.js"></script>
-	<link rel="stylesheet" type="text/css" href="bootstrap.css">
+	<!-- 利用vue-resouce实现交互  -->
 	<script type="text/javascript">
 		window.onload = function(){
-			new Vue({
-				el:"#box",
+			// 引入resouce文件相当于向vm上添加了一个对象，由此来获得数据
+				var vm = new Vue({
+				el:'#box',
 				data:{
-					
+
 				},
 				methods:{
 					get:function(){
+						// Promise规范
+						// function-1成功(resolve)状态；  function-2失败(reject)状态
 						this.$http.get('a.txt').then(function(res){
+							// 成功后返回数据
 							alert(res.data);
-						},function(){
-
-						});
+						},function(res){
+							//失败后也会返回一个结果
+							alert(res.data);
+						})
 					}
 				}
-			});
+			})
 		};
 	</script>
 </head>
