@@ -15,14 +15,15 @@
 				methods:{
 					get:function(){
 						// get的使用注意事项：
-						// 1.php文件前需要添加@； 
-						// 2.要传递的数据需要用params{}包裹。
-						this.$http.get("get.php", { 
-							params: {
-								a:2,
-								b:2
-								}
-							})
+						// 要传递的数据需要用params{a:3,b:2}包裹。或者使用 ? 后面跟数据，且数据间用 & 分隔
+						axios.get("get.php?a=4&b=2")
+						// this.$http.get("get.php", { 
+							// 或axios方法
+							// params: {
+							// 	a:3,
+							// 	b:2
+							// 	}
+							// })
 						.then(function(res){
 							console.log(res.data);
 						})

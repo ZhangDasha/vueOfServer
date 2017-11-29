@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue-交互-post</title>
+	<script src="vue.js"></script>
+	<!-- <script src="dist/axios.min.js"></script> -->
+		<!-- <script src="dist/vue-resource.js"></script> -->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			new Vue({
+				el:'#box',
+				data:{},
+				methods:{
+					post:function(){
+						// 注意：
+						// axios发送的数据格式和jquery ajax发送的默认数据格式却不相同
+						// jquery ajax： Content-Type："application/x-www-form-urlencoded;charset=utf-8"
+						// axios: Content-Type:"application/json;charset=utf-8"
+						// 所以使用new URLSearchParams()将axios的Content-Type转换成满足jquery-ajax
+
+						// 使用new URLSearchParams()转换Content-Type
+						var params = new URLSearchParams();
+						params.append('a',2);
+						params.append('b', 12);
+						axios.post('post.php', params)
+						.then(res => console.log(res.data))
+						// .then(res => console.log(res))
+						.catch(error => console.log(error));
+
+
+						// 错误
+						// Content-Type:"application/json;charset=utf-8"
+						// axios.post('post.php',{a:1,b:2})
+						// .then(function(res){
+						// 	console.log(res);
+						// })
+						// .catch(function(error){
+						// 	console.log(error);
+						// })
+
+					}
+				}
+			})
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<input type="button" value="post" @click="post()">
+	</div>
+</body>
+</html>
