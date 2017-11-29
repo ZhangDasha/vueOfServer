@@ -21,7 +21,7 @@
 						// 所以使用new URLSearchParams()将axios的Content-Type转换成满足jquery-ajax
 
 						// 使用new URLSearchParams()转换Content-Type
-						var params = new URLSearchParams();
+						var params = new URLSearchParams();						//创建URLSearchParames对象
 						params.append('a',2);
 						params.append('b', 12);
 						axios.post('post.php', params)

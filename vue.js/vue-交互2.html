@@ -16,9 +16,10 @@
 					get:function(){
 						// get的使用注意事项：
 						// 要传递的数据需要用params{a:3,b:2}包裹。或者使用 ? 后面跟数据，且数据间用 & 分隔
-						axios.get("get.php?a=4&b=2")
-						// this.$http.get("get.php", { 
-							// 或axios方法
+						
+						axios.get("get.php?a=4&b=2")					//axios简写
+
+						// this.$http.get("get.php", {       // 或axios
 							// params: {
 							// 	a:3,
 							// 	b:2
