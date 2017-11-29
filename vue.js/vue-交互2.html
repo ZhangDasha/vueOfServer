@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue-get-上传数据</title>
+	<script src="vue.js"></script>
+	<script src="dist/vue-resource.js"></script>
+	<!-- <script src="dist/axios.min.js"></script> -->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			var vm = new Vue({
+				el:'#box',
+				data:{},
+				methods:{
+					get:function(){
+						// get的使用注意事项：
+						// 1.php文件前需要添加@； 
+						// 2.要传递的数据需要用params{}包裹。
+						this.$http.get("get.php", { 
+							params: {
+								a:2,
+								b:2
+								}
+							})
+						.then(function(res){
+							console.log(res.data);
+						})
+						.catch(function(error){
+							console.log(error);
+						});
+
+// 	或
+						// vm.$http({
+						// 	url:'get.php',
+						// 	method:'GET',
+						// 	params:{
+						// 		a:1,
+						// 		b:2
+						// 	}
+						// })
+						// .then(function(res){
+						// 	console.log(res.data);
+						// })
+						// .catch(function(error){
+						// 	console.log(error);
+						// });
+
+					}
+				}
+			})
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<input type="button" value="上传" @click='get()'>
+	</div>
+</body>
+</html>
