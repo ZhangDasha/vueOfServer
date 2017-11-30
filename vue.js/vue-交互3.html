@@ -24,7 +24,7 @@
 						var params = new URLSearchParams();						//创建URLSearchParames对象
 						params.append('a',2);
 						params.append('b', 12);
-						axios.post('post.php', params)
+						axios.post('post.php',params)
 						.then(res => console.log(res.data))
 						// .then(res => console.log(res))
 						.catch(error => console.log(error));

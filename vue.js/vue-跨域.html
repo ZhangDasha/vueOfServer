@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue-跨域</title>
+	<style type="text/css">
+		.col{
+			background-color: #ccc;
+		}
+	</style>
+	<script src="vue.js"></script>
+	<script src="dist/vue-resource.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			var vm = new Vue({
+								el:'#box',
+								data:{
+									myData:[],
+									t:'',
+								},
+								methods:{
+									get:function(){
+										// 实现百度接口
+										this.$http.jsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",{
+											params:{'wd':this.t},					//传递的参数
+											jsonp:'cb'
+										})
+										.then(res =>{this.myData = res.data.s})
+										.catch(error => console.log(error));
+									}
+								}
+							})
+						}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<p>仿百度---接口</p>
+		<input type="text" v-model="t" @keyup="get()">
+		<ul>
+			<li v-for="value in myData" >
+				{{value}}
+			</li>
+		</ul>
+		<p v-show="myData.length === 0">暂无数据。。。</p>
+	</div>
+</body>
+</html>

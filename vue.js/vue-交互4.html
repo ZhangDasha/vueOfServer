@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue-jsonp</title>
+	<script src="vue.js"></script>
+	<script src="dist/axios.min.js"></script>
+	<script src="dist/vue-resource.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			new Vue({
+				el:'#box',
+				data:{},
+				methods:{
+					jsonp:function(){
+						// this.$http.jsonp("https://sug.so.360.cn/suggest?word='a'")   //360
+						this.$http.jsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='a'",{		//baidu
+							jsonp:'cb'		//改变callback名称,默认名字是“callback”
+						})
+						.then(res => console.log(res.data.s))
+						.catch(error => console.log(error));
+					}
+				}
+			})
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<input type="button" value="jsonp" @click='jsonp()'>
+	</div>
+</body>
+</html>
